@@ -18,7 +18,7 @@ def text_to_flash_player(text, opts = {})
   height = (opts[:height] if opts[:height]) || 20
   autoplay = opts[:autoplay]
   
-  filename =  Digest::MD5.new(text).to_s + ".mp3"
+  filename =  Digest::MD5.hexdigest(text).to_s + ".mp3"
   
   text.to_mp3(MP3_FOLDER_PATH + "/" + filename) unless File.exists?(MP3_FOLDER_PATH + "/" + filename)  
   html_for_mp3_flash(MP3_FOLDER_URL + "/" + filename, bgcolor, width, height, autoplay)
